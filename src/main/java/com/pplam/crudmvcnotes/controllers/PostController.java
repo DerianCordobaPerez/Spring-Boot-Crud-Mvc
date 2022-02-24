@@ -19,12 +19,6 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping(path = "/posts/{id}")
-    public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("post", this.postRepository.findById(id));
-        return "posts/show";
-    }
-
     @GetMapping(path = "/posts/create")
     public String create() {
         return "posts/create";
@@ -38,9 +32,10 @@ public class PostController {
         return "redirect:/posts/";
     }
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     @GetMapping(path = "/posts/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("post", this.postRepository.findById(id));
+        model.addAttribute("post", this.postRepository.findById(id).get());
         return "posts/edit";
     }
 

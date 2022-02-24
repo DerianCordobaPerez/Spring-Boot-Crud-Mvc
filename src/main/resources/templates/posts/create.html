@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:replace="layouts/app :: layout(~{::#app}, ~{::title}, _, _)">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create a new post</title>
 </head>
 <body>
+    <div id="app" th:class="'container my-2'">
+        <div th:class="'row'">
+            <div th:class="'col-md-12'">
+                <h1>Create new post!!</h1>
+            </div>
+        </div>
 
+        <form method="post" th:attr="action=@{/posts/create}">
+            <fieldset>
+                <div th:class="'form-group'">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" th:class="'form-control'">
+                </div>
+
+                <div th:class="'form-group'">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="body" rows="10" th:class="'form-control'"></textarea>
+                </div>
+
+                <input th:class="'btn btn-primary'" type="submit" value="Send a new post">
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>

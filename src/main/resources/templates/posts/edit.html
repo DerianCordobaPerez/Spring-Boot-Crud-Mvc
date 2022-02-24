@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:replace="layouts/app :: layout(~{::#app}, ~{::title}, _, _)">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit post</title>
 </head>
 <body>
+    <div id="app" th:class="'container my-2'">
+        <div th:class="'row'">
+            <div th:class="'col-md-12'">
+                <h1>Edit post!!</h1>
+            </div>
+        </div>
 
+        <form th:if="${post != null}" method="post" th:attr="action=@{/posts/{id}/edit(id=${post.id})}">
+            <fieldset>
+                <div th:class="'form-group'">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" th:class="'form-control'" th:value="${post.title}" />
+                </div>
+
+                <div th:class="'form-group'">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="body" rows="10" th:class="'form-control'" th:text="${post.body}"></textarea>
+                </div>
+
+                <input th:class="'btn btn-primary'" type="submit" value="Send a post">
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>
